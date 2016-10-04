@@ -1,0 +1,37 @@
+<div class="modal__orderfield__add">
+    <div class="modal__orderfield__add_info">
+        <span class="modal__orderfield__add_info_label">Вы выбрали</span>
+        <div class="modal__orderfield__add_info_size"><span id="rent_field_size" ng-bind="fieldOrdered"></span>/4 поля</div>
+        <span class="modal__orderfield__add_info__available_label">Доступно:</span>
+        <div class="modal__orderfield__add_info__available_size">
+            <span ng-show="fieldLeft">
+                <span ng-show="fieldLeft" id="busyness_field_size" ng-bind="fieldLeft"></span>/4 поля
+            </span>
+            <span ng-hide="fieldLeft">Не осталось</span>
+        </div>
+    </div>
+
+    <div class="modal__orderfield__add_fields">
+        <div class="modal__orderfield__add_fields_bg">
+            <div class="modal__orderfield__add_fields__element element_1">
+                <i class="fa fa-plus-circle"></i>
+            </div>
+
+            <div class="modal__orderfield__add_fields__element element_2">
+                <i class="fa fa-plus-circle"></i>
+            </div>
+
+            <div class="modal__orderfield__add_fields__element element_3">
+                <i class="fa fa-plus-circle"></i>
+            </div>
+
+            <div class="modal__orderfield__add_fields__element element_4">
+                <i class="fa fa-plus-circle"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal__orderfield__add_text">
+        <p>Если вы хотите заказать игровую зону большего размера, то кликните на темные области на поле.</p>
+    </div>
+</div>

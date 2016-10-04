@@ -1,0 +1,114 @@
+<div class="teamtable">
+    <div ng-if="loaded">
+        <div ng-show="$parent.teamAdded" class="cf">
+            <div class="content__add cf">
+                <div class="content__add__content cf">
+                    <div class="content__add__header">
+                        <span class="content__add__header_text"><span>Название команды</span></span>
+                    </div>
+
+                    <div class="left">
+                        <form name="form">
+                            <p class="content__add_info_text">Как будет называться ваша команда?</p>
+                            <input type="text" autofocus placeholder="Моя команда" name="teamName" ng-model="$root.teamName"
+                                   required/>
+                            <p class="content__add_info_text--phone">Введите номер телефона</p>
+                            <input class="phone" type="text" placeholder="+7 (__) ___-__-__" name="phone" ng-model="$root.phone"
+                                   ng-keydown="$event.which === 13 &amp;&amp; addPlayer()"
+                                   ui-mask="+7 (999) 999-99-99"  ui-mask-placeholder ui-mask-placeholder-char="_"
+                                   class="ng-pristine ng-valid ng-empty ng-touched">
+                            <a class="btn btn-success" ng-click="addPlayer()">Добавить</a>
+                        </form>
+                        <div class="content__add__content__info_team">
+                            *Вы можете добавить до 11 игроков в вашу команду
+                        </div>
+                    </div>
+                    <div class="right">
+                        <p>Каждый игрок получит приглашение на телефон и сможет подтвердить
+                            свое участие.</p>
+                        <div class="icon--phone"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content__table dark_blue">
+                <div class="header">
+                    Моя команда
+                </div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>hashKey</th>
+                        <th>№</th>
+                        <th>Игрок</th>
+                        <th>Телефон</th>
+                        <th class="tac">Статус</th>
+                        <th class="tac">Повторить уведомление</th>
+                        <th class="tac">Удалить</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="player in players">
+                        <td>{{$$hashKey}}</td>
+                        <td>{{$index + 1}}</td>
+                        <td>
+                            <span ng-if="player.status == 'pending'">
+                                Игрок №{{$index+1}}
+                            </span>
+                            <span ng-if="player.status == 'accept'">
+                                <span ng-bind="player.surname"></span> <span ng-bind="player.name"></span>
+                            </span>
+                            <span ng-if="player.status == 'decline'">
+                                Игрок №{{$index+1}}
+                            </span>
+
+                        </td>
+                        <td>{{player.mobile_phone}}</td>
+                        <td class="tac">
+                            <span ng-if="player.status == 'pending'">
+                                <i class="fa fa-clock-o"></i>
+                            </span>
+                            <span ng-if="player.status == 'accept'">
+                                <i class="fa fa-check"></i>
+                            </span>
+                            <span ng-if="player.status == 'decline'">
+                                <i class="fa fa-ban"></i>
+                            </span>
+                        </td>
+                        <td class="tac">
+                            <a class="content__table_link--notify" href="" ng-click="sendNotification(player.person_id)">
+                                <i class="fa fa-bell-o"></i>
+                            </a>
+                        </td>
+                        <td class="tac">
+                            <a class="content__table_link--remove" href="" ng-click="removePlayer(players, player)">
+                                <i class="fa fa-remove"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button class="btn btn-success fl" ng-click="saveTeam(form)">Сохранить</button>
+            <button class="btn btn-danger right fr" ng-click="deleteTeam(teamId)">Удалить команду</button>
+        </div>
+
+        <div ng-hide="$parent.teamAdded">
+            <div class="team__hint">
+                У вас еще нет команды, но вы можете ее создать прямо сейчас!
+
+                <div>
+                    <button type="button" class="btn btn-success" ng-click="$parent.teamAdded = true">Создать команду</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="!loaded">
+        <div class="content__add cf">
+            <div class="content__add__content">Загрузка...</div>
+        </div>
+    </div>
+
+</div>

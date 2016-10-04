@@ -1,0 +1,48 @@
+<div class="schedule_items">
+    <div ng-if="!isEmpty(schedules)">
+        <div ng-repeat="(key, value) in schedules | groupBy: 'field_name'" class="schedule_item">
+            <div class="schedule_item_inner" ng-show="loaded">
+                <div cg-busy="schedulePromise"></div>
+                <div class="schedule_name">
+                    <div class="schedule_title">
+                        <a href="#">
+                            <span>Тренировки</span>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="schedule_list">
+                    <div class="schedule_list__title">
+                        Расписание занятий
+                    </div>
+
+                    <ul class="schedule_list__item">
+                        <li class="schedule_btn"
+                            ng-repeat="schedule in value"
+                            ng-class="{'ordered': schedule.ordered}"
+                            ng-click="open(schedule)">
+                            <span ng-bind="formatDate(schedule.date) | date: 'HH:mm'"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="isEmpty(schedules)">
+        <div class="schedule_item">
+            <div class="schedule_item_inner">
+                <div class="schedule_name">
+
+                </div>
+                <div class="schedule_list">
+                    <div class="schedule_list__title schedule_list__empty">
+                        Доступных тренировок на эту дату нет.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

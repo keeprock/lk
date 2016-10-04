@@ -1,0 +1,16 @@
+<div class="date_wrapper">
+    <div class="date_wrapper__gradient__left wrapper__gradient hidden"></div>
+    <div class="date_wrapper__gradient__right wrapper__gradient"></div>
+    <ul class="date cf">
+        <li class="date_item" ng-class="{active: toggleObject.item == $index}" ng-repeat="date in dates">
+            <a class="date_item__link" data-person_id="" data-date="{{date.moment | amDateFormat:'YYYY-MM-DD'}}"
+               ng-click="changeDate($event); toggleObject.item = $index;" href="">
+                <time class="date_item__time" ng-bind="date.moment | amDateFormat: 'DD MMMM'"></time>
+                <div class="date_item__day">
+                    <span ng-bind="date.moment | amDateFormat: 'dddd'"></span>
+                    <span ng-bind="date.title ? '- ' + (date.title) : ''"></span>
+                </div>
+            </a>
+        </li>
+    </ul>
+</div>

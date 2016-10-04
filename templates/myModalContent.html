@@ -1,0 +1,46 @@
+<div class="rentfieldschedule__modal_add_order">
+    <form action="/order/order/create"></form>
+    <header class="modal__orderfield__header">
+
+        <div class="modal__orderfield__info">
+            <h3 class="modal__orderfield_title" ng-bind="schedule.field_name"></h3>
+            <span class="modal__orderfield_date" ng-bind="schedule.date | amDateFormat:'D MMMM'"></span>
+            <span class="modal__orderfield_date_time">
+                {{schedule.date | amDateFormat:'H:mm'}} - {{schedule.date_end | amDateFormat:'H:mm'}}
+            </span>
+        </div>
+
+        <div class="modal__orderfield__team">
+            <div class="modal__orderfield__team_title">
+                Ваша команда
+            </div>
+            <span class="modal__orderfield__team_icon"></span>
+            <span ng-show="loaded">
+                <div cg-busy="getCurrentTeamPromise"></div>
+                <a ng-show="!teamAdded" href="" ui-sref="rent.order.team" ng-class="classAnimate">Создать команду</a>
+                <span ng-show="teamAdded">{{teamName}}</span>
+            </span>
+        </div>
+
+        <div class="modal__orderfield__total">
+            <div class="modal__orderfield__total_title">
+                Итого
+            </div>
+            <div class="modal__orderfield__total_count">
+                <span class="modal__orderfield__total_count_int">{{currentPrice}}</span>
+                ₽
+            </div>
+        </div>
+    </header>
+
+    <rentfieldbusyness data="schedule.busyness"></rentfieldbusyness>
+
+    <footer class="modal__orderfield__footer">
+        <button type="button" id="orderbtn" ng-click="orderRent()" class="btn btn-orderfield-order btn-success"
+                data-dismiss="modal"
+                data-action="add-to-order" data-module="rentfield"
+                data-productspecs=''>
+            Забронировать
+        </button>
+    </footer>
+</div>

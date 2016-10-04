@@ -1,0 +1,23 @@
+<div class="rentfieldschedule__modal_add_order">
+    <form action="/order/order/create"></form>
+    <header class="modal__orderfield__header">
+
+        <div class="modal__orderfield__info">
+            <h3 class="modal__orderfield_title" ng-bind="schedule.field_name"></h3>
+            <span class="modal__orderfield_date" ng-bind="schedule.date | amDateFormat:'D MMMM'"></span>
+            <span class="modal__orderfield_date_time">
+                {{schedule.date | amDateFormat:'H:mm'}} - {{schedule.date_end | amDateFormat:'H:mm'}}
+            </span>
+        </div>
+
+    </header>
+
+    <footer class="modal__orderfield__footer tac">
+        <button type="button" id="orderbtn" ng-click="clubRent()" class="btn btn-orderfield-order btn-success"
+                data-dismiss="modal"
+                data-action="add-to-order" data-module="rentfield"
+                data-productspecs=''>
+            Сделать заказ
+        </button>
+    </footer>
+</div>
